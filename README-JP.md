@@ -149,3 +149,4 @@ obj.NewChild(mod.RuntimeSpawn_Common.FiringRange_Floor_01, mod.CreateVector(    
 obj.NewChild(mod.RuntimeSpawn_Common.FiringRange_Floor_01, mod.CreateVector(-10.25,     0,     0), offset, mod.CreateVector(0,0,1),  Math.PI/2);
 obj.NewChild(mod.RuntimeSpawn_Common.FiringRange_Floor_01, mod.CreateVector( 10.25,     0,     0), offset, mod.CreateVector(0,0,1), -Math.PI/2);
 ```
+
