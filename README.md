@@ -61,7 +61,7 @@ This is set as rotation around arbitrary axis from the default pose.<br>
 Specify the rotation axis with `axis` and the rotation angle in radians with `angle`.
 Specifying a positive value for `angle` performs a counterclockwise rotation relative to the axis, while specifying a negative value performs a clockwise rotation.<br>
 For example, when you specify `axis=mod.CreateVector(0,1,0), angle=Math.PI/3`, the object will spawn rotated 30 degrees from the default position around the y-axis.
-> ⚠️**Note**
+> ⚠️**Note**<br>
 > If you specify the zero vector `axis=mod.CreateVector(0,0,0)` for the rotation axis, a warning will appear in the console, and the object will spawn with rotation disabled.
 
 <br>
@@ -70,7 +70,7 @@ For example, when you specify `axis=mod.CreateVector(0,1,0), angle=Math.PI/3`, t
 Specify the scale of the object.<br>
 This argument is optional.
 If omitted, the object's default scale, `scale=mod.CreateVector(1,1,1)`, is specified.
-> ⚠️**Note**
+> ⚠️**Note**<br>
 > In the current version of Battlefield 6, there is a bug where moving an object whose scale has been altered using official functions like `SetObjectTransform` or `MoveObject` causes only the visual scale to revert to default, while the object's collision scale remains unchanged.<br>
 > Therefore, I do not recommend using this argument at this time.
 
