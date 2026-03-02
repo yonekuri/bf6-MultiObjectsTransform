@@ -33,7 +33,7 @@ The meaning of each argument is as follows.
 Specify the object to spawn.
 The available parameters are the same as those currently provided for the official `SpawnObject` function.<br>
 Additionally, specifying `undefined` allows you to spawn an “empty object”.
-This feature is primarily used when setting object parent-child relationships, as described later.
+This feature is primarily used when setting object parent-child relationships, described later.
 
 <br>
 
@@ -48,7 +48,7 @@ This setting is primarily important when rotating objects.<br>
 For example, `RuntimeSpawn_Common.FiringRange_Floor_01` is a standard 20.5×20.5 plane-type object, but the object's origin point in-game is set at the corner of the plane.
 This means that when rotating an object using functions like `RotateObject`, it rotates around its corner.
 Rotating around the center of a plane is not possible using the official functions.<br>
-In this example, specifying `offset=mod.CreateVector(-10.25,0,-10.25)` changes the center of rotation for `QRotation`, as described later, to the center of the plane.
+In this example, specifying `offset=mod.CreateVector(-10.25,0,-10.25)` changes the center of rotation for `QRotation`, described later, to the center of the plane.
 <p align="center">
 <img width="547" height="322" alt="figure1" src="https://github.com/user-attachments/assets/a44f80ea-03b6-4430-9b3b-5825e87e1698" />
 </p>
@@ -61,7 +61,8 @@ This is set as rotation around arbitrary axis from the default pose.<br>
 Specify the rotation axis with `axis` and the rotation angle in radians with `angle`.
 Specifying a positive value for `angle` performs a counterclockwise rotation relative to the axis, while specifying a negative value performs a clockwise rotation.<br>
 For example, when you specify `axis=mod.CreateVector(0,1,0), angle=Math.PI/3`, the object will spawn rotated 30 degrees from the default position around the y-axis.
-> ⚠️If you specify the zero vector `axis=mod.CreateVector(0,0,0)` for the rotation axis, a warning will appear in the console, and the object will spawn with rotation disabled.
+> ⚠️**Note**
+> If you specify the zero vector `axis=mod.CreateVector(0,0,0)` for the rotation axis, a warning will appear in the console, and the object will spawn with rotation disabled.
 
 <br>
 
@@ -69,9 +70,68 @@ For example, when you specify `axis=mod.CreateVector(0,1,0), angle=Math.PI/3`, t
 Specify the scale of the object.<br>
 This argument is optional.
 If omitted, the object's default scale, `scale=mod.CreateVector(1,1,1)`, is specified.
-> ⚠️In the current version of Battlefield 6, there is a bug where moving an object whose scale has been altered using official functions like `SetObjectTransform` or `MoveObject` causes only the visual scale to revert to default, while the object's collision scale remains unchanged.<br>
+> ⚠️**Note**
+> In the current version of Battlefield 6, there is a bug where moving an object whose scale has been altered using official functions like `SetObjectTransform` or `MoveObject` causes only the visual scale to revert to default, while the object's collision scale remains unchanged.<br>
 > Therefore, I do not recommend using this argument at this time.
 
 <br>
 
 ## Method
+`RuntimeObject` class has five methods.<br>
+The method is used as follows.
+```typescript
+let obj = new RuntimeObject(RuntimeSpawn_Common.FiringRange_Floor_01, mod.CreateVector(0,100,0), mod.CreateVector(-10.25,0,-10.25), mod.CreateVector(0,1,0), 0);
+obj.Move(mod.CreateVector(10,0,0));
+obj.ApplyTransform();
+```
+The descriptions of each method are as follows.
+
+### Move
+```typescript
+Move(dpos)
+```
+Specify object movement using relative coordinates.<br>
+Note, however, **executing only this method will not reflect the object's movement within the game.**<br>
+To reflect the movement, you must call `ApplyTransform`, described later, after this method is executed.
+* `dpos: mod.Vector`: Specify the amount by which the object is moved.
+<br>
+
+### QRotation
+```typescript
+QRotation(axis, angle, rotCenter)
+```
+Specify the rotation of an object using the rotation axis and rotation angle.<br>
+Note, however, **executing only this method will not reflect the object's rotation within the game.**<br>
+To reflect the rotation, you must call `ApplyTransform`, described later, after this method is executed.
+* `axis: mod.Vector`: Specify the rotation axis.
+* `angle: number`: Specify the rotation angle.
+
+Additionally, rotation typically centers around the object's origin specified by `offset` during spawn, but specifying the additional argument `rotCenter`, you can change the center of rotation to the arbitrary position.
+* `rotCenter: mod:Vector`: Specify the rotation center point arbitrarily. This argument is optional.
+<br>
+
+### ApplyTransform
+```typescript
+ApplyTransform()
+```
+Reflect the movement and rotation of the object previously specified by `Move` and `QRotation` in the game.<br>
+For example, if you keep calling `Move` in `Ongoing`, the object will gradually move by the specified amount every frame.
+<br>
+
+### NewChild
+```typescript
+NewChild(prefabEnum, pos, offset, axis, angle, scale): RuntimeObject
+```
+Spawn a new object as a child of the object.<br>
+The arguments that can be specified are the same as when creating an instance.
+Note, however, `pos, offset, axis` are specified in the **local coordinate system of the parent object**.
+Detailed usage of parent-child relationships will be described later.
+<br>
+
+### Remove
+```typescript
+Remove()
+```
+Remove the object.<br>
+
+## parent-child relationships
