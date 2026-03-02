@@ -124,7 +124,7 @@ NewChild(prefabEnum, pos, offset, axis, angle, scale): RuntimeObject
 ```
 Spawn a new object as a child of the object.<br>
 The arguments that can be specified are the same as when creating an instance.
-Note, however, `pos, offset, axis` are specified in the **local coordinate system of the parent object**.
+Note, however, `pos, offset, axis` are specified in the **local coordinate of the parent object**.
 Detailed usage of parent-child relationships will be described later.
 <br>
 
@@ -134,4 +134,41 @@ Remove()
 ```
 Remove the object.<br>
 
-## parent-child relationships
+## Parent-child relationships
+Using `NewChild` allows to specify the parent-child relationship between objects.<br>
+This makes it easy to move and rotate multiple objects when used effectively.
+
+Objects with parent-child relationships have the following properties.
+* When creating child objects using `NewChild`, the `pos, offset, axis` values are calculated **in the parent object's local coordinate**.
+* When the parent object is moved or rotated, child objects will also move or rotate while maintaining their relative positions to the parent object.
+* The movement vector for `Move` and the rotation axis for `QRotation` on child objects are all calculated **in the parent object's local coordinate**.
+* When you delete a parent object using `Remove`, **all child objects and their descendants will also be deleted**.
+
+Specifying displacement amounts and rotation axis in the parent object's local coordinate may be easier to understand if you imagine manipulating objects in the spatial editor.<br>
+
+To apeear a cube like the sample code, execute the following:
+```typescript
+const pos = mod.CreateVector(0,100,0);
+let obj = new RuntimeObject(undefined, pos, mod.CreateVector(0,0,0), mod.CreateVector(1,0,0), 0); //Create Parent Empty Object.
+const prefabEnum = mod.RuntimeSpawn_Common.FiringRange_Floor_01;
+const offset = mod.CreateVector(-10.25,0,-10.25);
+obj.NewChild(prefabEnum, mod.CreateVector(     0, 10.25,     0), offset, mod.CreateVector(0,1,0),          0);
+obj.NewChild(prefabEnum, mod.CreateVector(     0,     0, 10.25), offset, mod.CreateVector(1,0,0),  Math.PI/2);
+obj.NewChild(prefabEnum, mod.CreateVector(     0,     0,-10.25), offset, mod.CreateVector(1,0,0), -Math.PI/2);
+obj.NewChild(prefabEnum, mod.CreateVector(     0,-10.25,     0), offset, mod.CreateVector(1,0,0),    Math.PI);
+obj.NewChild(prefabEnum, mod.CreateVector(-10.25,     0,     0), offset, mod.CreateVector(0,0,1),  Math.PI/2);
+obj.NewChild(prefabEnum, mod.CreateVector( 10.25,     0,     0), offset, mod.CreateVector(0,0,1), -Math.PI/2);
+```
+In this example, a parent empty object is created, and six boards are generated as its children with varying positions and angles to represent a cube.<br>
+When the parent moves, the child also moves while maintaining its relative position.
+Therefore, to move the cube, you can simply call the parent's method.
+```typescript
+obj.Move(mod.CreateVector(0.5,0,0));
+obj.QRotation(mod.CreateVector(0,1,0), Math.PI/180);
+obj.ApplyTransform();
+```
+Additionally, when generating a child with the parent's posture altered as shown below, the position and rotation axis are calculated in the parent's coordinate system.
+So the cube will be generated in a rotated state from the start.
+```typescript
+let obj = new RuntimeObject(undefined, pos, mod.CreateVector(0,0,0), mod.CreateVector(1,0,0), Math.PI/4); //Rotate 45 degrees around the x-axis.
+```
