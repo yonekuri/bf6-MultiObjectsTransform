@@ -150,4 +150,10 @@ obj.NewChild(prefabEnum, mod.CreateVector(     0,-10.25,     0), offset, mod.Cre
 obj.NewChild(prefabEnum, mod.CreateVector(-10.25,     0,     0), offset, mod.CreateVector(0,0,1),  Math.PI/2);
 obj.NewChild(prefabEnum, mod.CreateVector( 10.25,     0,     0), offset, mod.CreateVector(0,0,1), -Math.PI/2);
 ```
-
+この例では親として空オブジェクトを用意し、その子として6個の板を位置と角度を変えて生成することで立方体を表現しています。<br>
+親を動かすと子も相対位置を保ちながら運動するため、立方体を動かしたい場合は親のメソッドを呼ぶだけで実行できます。
+```typescript
+obj.Move(mod.CreateVector(0.5,0,0));
+obj.QRotation(mod.CreateVector(0,1,0), Math.PI/180);
+obj.ApplyTransform();
+```
