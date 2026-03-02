@@ -10,7 +10,7 @@
 [MultiObjectsTransform.ts](https://github.com/yonekuri/bf6-MultiObjectsTransform/blob/main/MultiObjectsTransform.ts "スクリプト")の内容をスクリプトの末尾にコピー&ペーストしてください。
 
 ## サンプルコード
-
+[MOT_Sample.ts](https://github.com/yonekuri/bf6-MultiObjectTransform/blob/main/MOT_Sample.ts "スクリプト")
 
 ## 機能
 このスクリプトでは`RuntimeObject`クラスのみを追加します。<br>
