@@ -158,7 +158,7 @@ obj.Move(mod.CreateVector(0.5,0,0));
 obj.QRotation(mod.CreateVector(0,1,0), Math.PI/180);
 obj.ApplyTransform();
 ```
-次のように親の姿勢を変えた状態で子を生成した場合も、位置や回転軸は親の座標系で計算されるため、立方体が最初から回転した状態で生成されます。
+また、次のように親の姿勢を変えた状態で子を生成した場合も、位置や回転軸は親の座標系で計算されるため、立方体が最初から回転した状態で生成されます。
 ```typescript
 let obj = new RuntimeObject(undefined, pos, mod.CreateVector(0,0,0), mod.CreateVector(1,0,0), Math.PI/4); //Rotate 45 degrees around the x-axis.
 ```
