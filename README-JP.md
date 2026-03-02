@@ -40,7 +40,7 @@ let obj = new RuntimeObject(prefabEnum, pos, offset, axis, angle, scale);
 <img width="547" height="322" alt="figure1" src="https://github.com/user-attachments/assets/a44f80ea-03b6-4430-9b3b-5825e87e1698" />
 </p>
 
-<br><br>
+<br>
 
 * `axis: mod.Vector, angle: nuber`:<br>
 2つの引数でオブジェクトの初期姿勢を指定します。<br>
