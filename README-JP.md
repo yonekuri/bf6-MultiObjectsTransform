@@ -9,6 +9,9 @@
 ## 使い方
 [MultiObjectsTransform.ts](https://github.com/yonekuri/bf6-MultiObjectsTransform/blob/main/MultiObjectsTransform.ts "スクリプト")の内容をスクリプトの末尾にコピー&ペーストしてください。
 
+## サンプルコード
+
+
 ## 機能
 このスクリプトでは`RuntimeObject`クラスのみを追加します。<br>
 以下のように引数を指定してクラスのインスタンスを生成すると、ゲーム内にもオブジェクトがスポーンします。
