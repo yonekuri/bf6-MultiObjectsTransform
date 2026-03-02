@@ -77,7 +77,6 @@ Move(dpos)
 ただし、**このメソッドを実行するだけではゲーム内でオブジェクトの移動は反映されません。**<br>
 移動を反映するためには後述する`ApplyTransform`をこのメソッドが実行された後に呼ぶ必要があります。
 * `dpos: mod.Vector`: オブジェクトの移動量を指定します。
-
 <br>
 
 ### QRotation
@@ -92,7 +91,6 @@ QRotation(axis, angle, rotCenter)
 
 また、回転は通常スポーン時に`offset`で指定したオブジェクトの原点を中心に回転しますが、追加の引数`rotCenter`を指定することで、任意の場所を中心とした回転に変更できます。
 * `rotCenter: mod:Vector`: 回転の中心点を任意で指定します。この引数は省略可能です。
-
 <br>
 
 ### ApplyTransform
@@ -101,7 +99,6 @@ ApplyTransform()
 ```
 それまでに指示された`Move`と`QRotation`によるオブジェクトの移動/回転を反映します。<br>
 例えば`Move`を使用してオブジェクトを徐々に移動させるような場合、`Ongoing`の中でこのメソッドを常に実行し続けると指示された移動が毎フレームオブジェクトに反映されるようになります。
-
 <br>
 
 ### NewChild
@@ -112,7 +109,6 @@ NewChild(prefabEnum, pos, offset, axis, angle, scale): RuntimeObject
 指定できる引数はインスタンスの生成の際と同じです。
 ただし、`pos, offset, axis`は**親オブジェクトのローカル座標系**での指定になります。
 親子関係の詳しい使い方は後述します。
-
 <br>
 
 ### Remove
