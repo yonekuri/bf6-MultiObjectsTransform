@@ -103,14 +103,14 @@ If the instance is an empty object, it returns `undefined`.
 `offset: mod.Vector`:
 Get the offset of an object, specified at the time of instance creation.
 
-#### pos
-`pos: mod.Vector`:
-Get the **rotation center coordinates** of the object.
+#### worldPos
+`worldPos: mod.Vector`:
+Get the **rotation center coordinates** of the object in world coordinates.
 
-#### offsetNow
-`offsetNow: mod.Vector`:
-Get the current offset of the object.<br>
-This is the vector obtained by rotating the offset according to the object's pose.
+#### localPos
+`localPos: mod.Vector`:
+Get the **rotation center coordinates** of the object in the parent's local coordinates.<br>
+If no parent exists, it has the same value as worldPos.
 
 #### parent
 `parent: RuntimeObject | undefied`:
