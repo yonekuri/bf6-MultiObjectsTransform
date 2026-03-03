@@ -74,9 +74,31 @@ If omitted, the object's default scale, `scale=mod.CreateVector(1,1,1)`, is spec
 > In the current version of Battlefield 6, there is a bug where moving an object whose scale has been altered using official functions like `SetObjectTransform` or `MoveObject` causes only the visual scale to revert to default, while the object's collision scale remains unchanged.<br>
 > Therefore, I do not recommend using this argument at this time.
 
-<br>
+### Property
+An instance of `RuntimeObject` has eight properties.<br>
+You can retrieve the property as follows.
+```typescript
+let obj = new RuntimeObject(RuntimeSpawn_Common.FiringRange_Floor_01, mod.CreateVector(0,100,0), mod.CreateVector(-10.25,0,-10.25), mod.CreateVector(0,1,0), 0);
+let object = obj.object;
+let pos = obj.pos;
+```
+The descriptions of each property are as follows.
 
-### 
+#### object
+
+#### id
+
+#### prefabEnum
+
+#### offset
+
+#### pos
+
+#### offsetNow
+
+#### parent
+
+#### children
 
 ### Method
 `RuntimeObject` class has five methods.<br>
