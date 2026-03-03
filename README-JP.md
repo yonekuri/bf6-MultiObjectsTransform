@@ -82,17 +82,17 @@ let pos = obj.pos;
 
 #### object
 `object: mod.Object | undefined`: <br>
-オブジェクト本体を取得します。
+オブジェクト本体を取得します。<br>
 インスタンスが空オブジェクトの場合には`undefined`となります。
 
 #### id
 `id: number | undefined`: <br>
-オブジェクトのIDを取得します。
+オブジェクトのIDを取得します。<br>
 インスタンスが空オブジェクトの場合には`undefined`となります。
 
 #### prefabEnum
 `prefabEnum`: <br>
-スポーン時に指定したオブジェクトのprefabEnumを取得します。
+スポーン時に指定したオブジェクトのprefabEnumを取得します。<br>
 インスタンスが空オブジェクトの場合には`undefined`となります。
 
 #### offset
@@ -105,17 +105,17 @@ let pos = obj.pos;
 
 #### offsetNow
 `offsetNow: mod.Vector`: <br>
-オブジェクトの現在のオフセットを取得します。
+オブジェクトの現在のオフセットを取得します。<br>
 これはスポーン時に指定したオフセットベクトルがオブジェクトの姿勢に従って回転したものです。
 
 #### parent
 `parent: RuntimeObject | undefined`: <br>
-自オブジェクトの親を取得します。
+自オブジェクトの親を取得します。<br>
 親が存在しない場合は`undefined`となります。
 
 #### children
 `children: Set<RuntimeObject>`: <br>
-自オブジェクトの子を取得します。
+自オブジェクトの子を取得します。<br>
 子はTypescriptにおける`Set`として取得されます。
 
 ### メソッド
