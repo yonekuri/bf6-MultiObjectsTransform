@@ -106,7 +106,7 @@ let pos = obj.pos;
 #### offsetNow
 `offsetNow: mod.Vector`: <br>
 オブジェクトの現在のオフセットを取得します。<br>
-これはスポーン時に指定したオフセットベクトルがオブジェクトの姿勢に従って回転したものです。
+これはスポーン時に指定したオフセットがオブジェクトの姿勢に従って回転したベクトルです。
 
 #### parent
 `parent: RuntimeObject | undefined`: <br>
@@ -212,3 +212,6 @@ obj.ApplyTransform();
 ```typescript
 let obj = new RuntimeObject(undefined, pos, mod.CreateVector(0,0,0), mod.CreateVector(1,0,0), Math.PI/4); //Rotate 45 degrees around the x-axis.
 ```
+プロパティの`parent`や`children`を使用することで、それぞれオブジェクトの親と子を取得できます。<br>
+子はTypescriptにおける`Set`として取得され、子オブジェクトがスポーン順に格納されていることに注意してください。
+特定の子を取得したい場合は`Set`を配列に変換してから取り出すことをお勧めします。
