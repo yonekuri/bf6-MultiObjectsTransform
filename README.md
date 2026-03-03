@@ -218,3 +218,6 @@ So the cube will be generated in a rotated state from the start.
 ```typescript
 let obj = new RuntimeObject(undefined, pos, mod.CreateVector(0,0,0), mod.CreateVector(1,0,0), Math.PI/4); //Rotate 45 degrees around the x-axis.
 ```
+Using the `parent` and `children` properties allows you to retrieve the parent and children objects.<br>
+Note that children are retrieved as a `Set` in TypeScript, storing child objects in the order they were spawned.
+If you want to retrieve a specific child, it is recommended to convert the `Set` to an array and extract it.
