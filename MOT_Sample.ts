@@ -121,8 +121,6 @@ class RuntimeObject {
                        | undefined;
     readonly offset: mod.Vector;
 
-    private _offsetNow: mod.Vector;
-
     private _pos: mod.Vector;
     private _rotState: [number,number,number,number] = [1,0,0,0];
 
@@ -134,12 +132,18 @@ class RuntimeObject {
     private _children = new Set<RuntimeObject>();
 
     //getter
-    get pos(): mod.Vector {
+    get worldPos(): mod.Vector {
         return this._pos;
     }
 
-    get offsetNow(): mod.Vector {
-        return this._offsetNow;
+    get localPos(): mod.Vector {
+        if (this.parent) {
+            const localPos = mod.Subtract(this._pos,this.parent._pos)
+            const [pqw,pqx,pqy,pqz] = this.parent._rotState;
+            return RuntimeObject.#QRotateVector(localPos,[pqw,-pqx,-pqy,-pqz]);
+        } else {
+            return this._pos;
+        }
     }
 
     get parent(): RuntimeObject | undefined {
@@ -180,9 +184,8 @@ class RuntimeObject {
         this._pos = pos;
         this.offset = offset;
         this._rotState = RuntimeObject.#MakeRotQ(axis,angle);
-        this._offsetNow = RuntimeObject.#QRotateVector(this.offset, this._rotState);
         if (prefabEnum) {
-            this.object = mod.SpawnObject(prefabEnum, mod.Add(pos,this._offsetNow), RuntimeObject.#QtoEuler(this._rotState), scale);
+            this.object = mod.SpawnObject(prefabEnum, mod.Add(pos,RuntimeObject.#QRotateVector(this.offset, this._rotState)), RuntimeObject.#QtoEuler(this._rotState), scale);
             if (this.object) this.id = mod.GetObjId(this.object);
         } else { //Empty Object.
             this.object = undefined;
@@ -237,8 +240,6 @@ class RuntimeObject {
                 this._pos = mod.Add(this._pos,this._dpos);
             }
             this._rotState = [fqw,fqx,fqy,fqz];
-            this._offsetNow = newoffset;
-            
 
             this._dpos = mod.CreateVector(0,0,0);
             this._dQrot = [1,0,0,0];
