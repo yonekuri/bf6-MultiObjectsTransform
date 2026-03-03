@@ -99,14 +99,14 @@ let pos = obj.pos;
 `offset: mod.Vector`: <br>
 スポーン時に指定したオブジェクトのオフセットを取得します。
 
-#### pos
-`pos: mod.Vector`: <br>
-オブジェクトの**回転中心の座標**を取得します。
+#### worldPos
+`worldPos: mod.Vector`: <br>
+ワールド座標におけるオブジェクトの**回転中心の座標**を取得します。
 
-#### offsetNow
-`offsetNow: mod.Vector`: <br>
-オブジェクトの現在のオフセットを取得します。<br>
-これはスポーン時に指定したオフセットがオブジェクトの姿勢に従って回転したベクトルです。
+#### localPos
+`localPos: mod.Vector`: <br>
+親のローカル座標系におけるオブジェクトの**回転中心の座標**を取得します。
+親が存在しない場合はworldPosと同じ値です。
 
 #### parent
 `parent: RuntimeObject | undefined`: <br>
