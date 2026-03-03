@@ -72,7 +72,7 @@ let obj = new RuntimeObject(prefabEnum, pos, offset, axis, angle, scale);
 
 <br>
 
-## メソッド
+### メソッド
 `RuntimeObject`クラスには5つのメソッドが存在します。<br>
 メソッドは以下のように使用します。
 ```typescript
@@ -82,7 +82,7 @@ obj.ApplyTransform();
 ```
 各メソッドの説明は以下の通りです。
 
-### Move
+#### Move
 ```typescript
 Move(dpos)
 ```
