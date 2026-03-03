@@ -70,7 +70,53 @@ let obj = new RuntimeObject(prefabEnum, pos, offset, axis, angle, scale);
 > ⚠️現在のBattlefield 6のバージョンでは公式で用意されている`SetObjectTransform`関数や`MoveObject`関数などを利用してスケールを変更したオブジェクトを移動すると、オブジェクトの当たり判定のスケールはそのままに、見た目のスケールだけがデフォルトに戻ってしまうというバグが存在しています。<br>
 > そのため現状ではこの引数を使用することはおすすめしません。
 
-<br>
+### プロパティ
+`RuntimeObject`のインスタンスは8つのプロパティを持ちます。<br>
+プロパティは以下のように取得できます。
+```typescript
+let obj = new RuntimeObject(RuntimeSpawn_Common.FiringRange_Floor_01, mod.CreateVector(0,100,0), mod.CreateVector(-10.25,0,-10.25), mod.CreateVector(0,1,0), 0);
+let object = obj.object;
+let pos = obj.pos;
+```
+各プロパティの説明は以下の通りです。
+
+#### object
+`object: mod.Object | undefined`:
+オブジェクト本体を取得します。
+インスタンスが空オブジェクトの場合には`undefined`となります。
+
+#### id
+`id: number | undefined`: 
+オブジェクトのIDを取得します。
+インスタンスが空オブジェクトの場合には`undefined`となります。
+
+#### prefabEnum
+`prefabEnum`: 
+スポーン時に指定したオブジェクトのprefabEnumを取得します。
+インスタンスが空オブジェクトの場合には`undefined`となります。
+
+#### offset
+`offset: mod.Vector`:
+スポーン時に指定したオブジェクトのオフセットを取得します。
+
+#### pos
+`pos: mod.Vector`:
+オブジェクトの**回転中心の座標**を取得します。
+
+#### offsetNow
+`offsetNow: mod.Vector`:
+オブジェクトの現在のオフセットを取得します。
+これはスポーン時に指定したオフセットベクトルがオブジェクトの姿勢に従って回転したものです。
+
+#### parent
+`parent: RuntimeObject | undefined`:
+自オブジェクトの親を取得します。
+親が存在しない場合は`undefined`となります。
+
+#### children
+`children: Set<RuntimeObject>`:
+自オブジェクトの子を取得します。
+子はTypescriptにおける`Set`として取得されます。
 
 ### メソッド
 `RuntimeObject`クラスには5つのメソッドが存在します。<br>
