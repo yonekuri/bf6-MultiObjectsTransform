@@ -132,7 +132,7 @@ class RuntimeObject {
             const newoffset = RuntimeObject.#QRotateVector(this.offset,[fqw,fqx,fqy,fqz]);
             if (this.object) {
                 const dpos = mod.Add(this._dpos,mod.Subtract(newoffset,oldoffset));
-                const pos = mod.Add(mod.GetObjectPosition(this.object),dpos);
+                const pos = mod.Add(mod.Add(this._pos,RuntimeObject.#QRotateVector(this.offset,this._rotState)),dpos);
                 const rot = RuntimeObject.#QtoEuler([fqw,fqx,fqy,fqz]);
 
                 const transform = mod.CreateTransform(pos,rot);
