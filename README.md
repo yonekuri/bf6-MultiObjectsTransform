@@ -170,7 +170,8 @@ NewChild(prefabEnum, pos, offset, axis, angle, scale): RuntimeObject
 ```
 Spawn a new object as a child of the object.<br>
 The arguments that can be specified are the same as when creating an instance.
-Note, however, `pos, offset, axis` are specified in the **local coordinates of the parent object**.
+Note, however, `pos, offset, axis` are specified in the **local coordinates of the parent object**.<br>
+Returns the generated RuntimeObject as the return value.<br>
 Detailed usage of parent-child relationships will be described later.
 <br>
 
