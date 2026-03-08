@@ -108,11 +108,11 @@ let pos = obj.worldPos;
 親のローカル座標系におけるオブジェクトの**回転中心の座標**を取得します。<br>
 親が存在しない場合はworldPosと同じ値です。
 
-### effWorldPos
+#### effWorldPos
 `effWorldPos: mod.Vector`: <br>
 **MoveやQRotationによって指示された移動や回転も反映した**ワールド座標におけるオブジェクトの回転中心の座標を取得します。
 
-### effLocalPos
+#### effLocalPos
 `effLocalPos: mod.Vector`: <br>
 **MoveやQRotationによって指示された移動や回転も反映した**親のローカル座標系におけるオブジェクトの回転中心の座標を取得します。<br>
 親が存在しない場合はeffWorldPosと同じ値です。
