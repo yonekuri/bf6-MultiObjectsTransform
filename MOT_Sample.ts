@@ -320,23 +320,23 @@ class RuntimeObject {
         this._parent = undefined;
     }
 
-    LocalToWorldVector(localVector: mod.Vector): mod.Vector {
-        const worldVector = RuntimeObject.#QRotateVector(localVector,this._rotState);
+    LocalToWorldVector(vector: mod.Vector): mod.Vector {
+        const worldVector = RuntimeObject.#QRotateVector(vector,this._rotState);
         return worldVector
     }
 
-    WorldToLocalVector(worldVector: mod.Vector): mod.Vector {
-        const localVector = RuntimeObject.#QRotateVector(worldVector,RuntimeObject.#InverseQ(this._rotState));
+    WorldToLocalVector(vector: mod.Vector): mod.Vector {
+        const localVector = RuntimeObject.#QRotateVector(vector,RuntimeObject.#InverseQ(this._rotState));
         return localVector
     }
 
-    EffLocalToWorldVector(effLocalVector: mod.Vector): mod.Vector {
-        const effWorldVector = RuntimeObject.#QRotateVector(effLocalVector,this._effRotState);
+    EffLocalToWorldVector(vector: mod.Vector): mod.Vector {
+        const effWorldVector = RuntimeObject.#QRotateVector(vector,this._effRotState);
         return effWorldVector
     }
 
-    EffWorldToLocalVector(effWorldVector: mod.Vector): mod.Vector {
-        const effLocalVector = RuntimeObject.#QRotateVector(effWorldVector,RuntimeObject.#InverseQ(this._effRotState));
+    EffWorldToLocalVector(vector: mod.Vector): mod.Vector {
+        const effLocalVector = RuntimeObject.#QRotateVector(vector,RuntimeObject.#InverseQ(this._effRotState));
         return effLocalVector
     }
 
