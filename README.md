@@ -156,7 +156,7 @@ static createExistingObject(
 
 Allows an object that already exists in the game to be managed as a `TransformableObject`.
 
-- `object: mod.Object`
+- `object: Object`
 
   Specifies the existing object to manage.
 
@@ -434,7 +434,7 @@ let position = obj.worldPos;
 
 #### `object`
 
-- `object: mod.Object | undefined`
+- `object: Object | undefined`
 
   Returns the managed in-game object itself. Returns `undefined` when the target is an empty object.
 
