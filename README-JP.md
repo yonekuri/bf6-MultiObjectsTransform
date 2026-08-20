@@ -102,7 +102,7 @@ static createEmptyObject(position, angle, axis, scale): TransformableObject
 static createExistingObject(object, offset, scale): TransformableObject
 ```
 既にゲーム内に存在するオブジェクトをTransformableObjectとして管理できるようにします。  
-* `object: mod.Object`  
+* `object: Object`  
 対象のオブジェクトを指定します。  
 
 
@@ -265,7 +265,7 @@ let object = obj.object;
 let pos = obj.worldPos;
 ```
 #### object
-* `object: mod.Object | undefined`  
+* `object: Object | undefined`  
 対象のオブジェクトそのものを取得します。
 対象のオブジェクトがEmptyオブジェクトの場合は`undefined`を返します。
 
