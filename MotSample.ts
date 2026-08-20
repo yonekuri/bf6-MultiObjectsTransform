@@ -119,11 +119,16 @@ class PlayerDatas {
     }
 
     static remove(playerId: number) {
-        PlayerDatas.#allPlayers[playerId].object?.remove();
+        const playerData = PlayerDatas.#allPlayers[playerId];
+        if (!playerData) return;
+
+        playerData.object?.remove();
         delete PlayerDatas.#allPlayers[playerId];
     }
 }
 
+
+//MultiObjectTransform Library
 export namespace Quaternions {
     export type Quaternion = {
         w: number;
@@ -304,17 +309,17 @@ export class TransformableObject {
     }
 
     public static createExistingObject(
-        object: mod.Object,
+        object: TransformableObject.Object,
         scale?: number
     ): TransformableObject;
     public static createExistingObject(
-        object: mod.Object,
+        object: TransformableObject.Object,
         offset: mod.Vector,  
         scale?: number
     ): TransformableObject;
 
     public static createExistingObject(
-        object: mod.Object,
+        object: TransformableObject.Object,
         arg1?: number | mod.Vector,  
         arg2?: number
     ): TransformableObject {
@@ -378,7 +383,7 @@ export class TransformableObject {
         return new TransformableObject({ position, rotation, scale });
     }
 
-    public readonly object?: mod.Object;
+    public readonly object?: TransformableObject.Object;
     public readonly id?: number;
     public readonly prefabEnum?: TransformableObject.PrefabEnum;
     public readonly offset: mod.Vector;
@@ -706,17 +711,17 @@ export class TransformableObject {
     }
 
     public createExistingChild(
-        object: mod.Object,
+        object: TransformableObject.Object,
         scale?: number
     ): TransformableObject | undefined;
     public createExistingChild(
-        object: mod.Object,
+        object: TransformableObject.Object,
         offset: mod.Vector,  
         scale?: number
     ): TransformableObject | undefined;
 
     public createExistingChild(
-        object: mod.Object,
+        object: TransformableObject.Object,
         arg1?: number | mod.Vector,  
         arg2?: number
     ): TransformableObject | undefined {
@@ -1024,6 +1029,21 @@ export class TransformableObject {
 }
 
 export namespace TransformableObject {
+    export type Object =
+        | mod.Bomb
+        | mod.EmplacementSpawner
+        | mod.FixedCamera
+        | mod.InteractPoint
+        | mod.LootSpawner
+        | mod.MCOM
+        | mod.SFX
+        | mod.SpatialObject
+        | mod.Spawner
+        | mod.VehicleSpawner
+        | mod.VL7Cloud
+        | mod.VO
+        | mod.WorldIcon;
+
     export type PrefabEnum =
         | mod.RuntimeSpawn_Common
         | mod.RuntimeSpawn_Abbasid
@@ -1046,7 +1066,10 @@ export namespace TransformableObject {
         | mod.RuntimeSpawn_Granite_ResidentialNorth
         | mod.RuntimeSpawn_Granite_TechCenter
         | mod.RuntimeSpawn_Granite_Underground
-        | mod.RuntimeSpawn_Sand;
+        | mod.RuntimeSpawn_Sand
+        | mod.RuntimeSpawn_GolmudRailway
+        | mod.RuntimeSpawn_Plaza
+        | mod.RuntimeSpawn_Isolated;
 
     export type RuntimeObjectProperties = {
         position: mod.Vector;
@@ -1057,7 +1080,7 @@ export namespace TransformableObject {
     };
 
     export type ExistingObjectProperties = {
-        object: mod.Object;
+        object: TransformableObject.Object;
         offset: mod.Vector;
         scale: number;
     };
